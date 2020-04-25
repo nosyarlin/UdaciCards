@@ -13,7 +13,6 @@ export default function TextButton ({ text, onPress, style={} }) {
 const styles = StyleSheet.create({
   btn: {
     justifyContent: 'center',
-    margin: 20,
     paddingLeft: 8,
     paddingRight: 8,
     height: 36,
