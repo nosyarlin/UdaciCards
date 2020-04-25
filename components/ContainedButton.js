@@ -13,7 +13,8 @@ export default function ContainedButton ({ text, onPress, btnStyle={}, btnTextSt
 const styles = StyleSheet.create({
   btn: {
     justifyContent: 'center',
-    margin: 20,
+    marginLeft: 20,
+    marginRight: 20,
     paddingLeft: 16,
     paddingRight: 16,
     height: 36,
