@@ -2,12 +2,12 @@ import React from 'react';
 import { TextInput, StyleSheet } from 'react-native';
 import { accent_color } from '../utils/colors';
 
-const OutlineTextInput = ({ inputStyle={}, onChange, value }) => {
+const OutlineTextInput = ({ inputStyle={}, onChange, ...rest }) => {
   return (
     <TextInput
       style={[styles.textInput, inputStyle]}
       onChangeText={onChange}
-      value={value}
+      {...rest}
     />
   )
 }

@@ -13,6 +13,7 @@ import { createMaterialTopTabNavigator } from '@react-navigation/material-top-ta
 import AddDeck from '../screens/AddDeck';
 import Decks from '../screens/Decks';
 import Deck from '../screens/Deck';
+import AddCard from '../screens/AddCard';
 
 const Tabs = Platform.os === 'ios'
   ? createBottomTabNavigator()
@@ -75,6 +76,11 @@ function NavigationStacks() {
         name="Deck"
         component={Deck}
         options={({ route }) => ({ title: route.params.title })}
+      />
+      <Stacks.Screen
+        name="AddCard"
+        component={AddCard}
+        options={{ title: 'Add Card' }}
       />
     </Stacks.Navigator>
   );

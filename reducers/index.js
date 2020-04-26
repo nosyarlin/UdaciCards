@@ -20,7 +20,7 @@ export default function decks(state={}, action) {
     case ADD_CARD:
       deck = {
         ...state[key],
-        questions: deck.questions.concat([{
+        questions: state[key].questions.concat([{
           question,
           answer,
         }])

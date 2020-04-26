@@ -45,6 +45,7 @@ export class AddDeck extends React.Component {
         <OutlineTextInput
           onChange={this.onChange}
           value={this.state.title}
+          placeholder="Enter title for your new deck"
         />
         <ContainedButton
           text="ADD"

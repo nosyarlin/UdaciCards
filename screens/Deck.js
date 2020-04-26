@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { View, Text, TouchableOpacity } from 'react-native';
+import { View, Text } from 'react-native';
 import commonStyles from '../utils/commonStyles';
 import { deleteDeck } from '../actions';
 import { deleteDeckFromDB } from '../utils/db';
@@ -18,7 +18,11 @@ function mapStateToProps(decks, { route }) {
 export class Deck extends React.Component {
 
   navigateToAddCard = () => {
-    console.log("add card");
+    const { navigation, deckId } = this.props;
+    navigation.navigate(
+      'AddCard',
+      { deckId }
+    )
   }
 
   navigateToQuiz = () => {
@@ -43,7 +47,7 @@ export class Deck extends React.Component {
     if (deckId in decks) {
       numCards = decks[deckId].questions.length;
     }
-    
+
     return (
       <View
         style={commonStyles.center}
