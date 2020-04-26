@@ -28,14 +28,14 @@ export function setLocalNotification() {
   AsyncStorage.getItem(NOTIFICATION_KEY)
     .then(JSON.parse)
     .then((data) => {
-      if (data === null) {
+      if (data === null) {        
         Permissions.askAsync(Permissions.NOTIFICATIONS)
           .then(({ status }) => {
             if (status === 'granted') {
               Notifications.cancelAllScheduledNotificationsAsync();
               let tomorrow = new Date();
               tomorrow.setDate(tomorrow.getDate() + 1);
-              tomorrow.setHours(17);
+              tomorrow.setHours(20);
               tomorrow.setMinutes(0);
 
               Notifications.scheduleLocalNotificationAsync(
