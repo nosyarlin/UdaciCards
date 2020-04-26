@@ -1,6 +1,9 @@
 import { AppLoading } from 'expo';
 import React from 'react';
-import { View, Text, TouchableOpacity } from 'react-native';
+import { 
+  Text, TouchableOpacity,
+  FlatList, SafeAreaView
+} from 'react-native';
 import { connect } from 'react-redux';
 import { getDecks } from '../utils/db';
 import { receiveDecks } from '../actions';
@@ -37,6 +40,20 @@ export class Decks extends React.Component {
     )
   }
 
+  renderItem = (key, title, questions) => {
+    return (
+      <TouchableOpacity
+        key={key}
+        onPress={() => this.onPress(key)}
+      >
+        <DeckTile
+          title={title}
+          numCards={questions.length}
+        />
+      </TouchableOpacity>
+    );
+  }
+
   render() {
     const { ready } = this.state;
     const { decks } = this.props;
@@ -45,21 +62,20 @@ export class Decks extends React.Component {
     }
 
     return (
-      <View style={{flex: 1}}>
-        {Object.keys(decks).map((key) => {
-          return (
-            <TouchableOpacity
-              key={key}
-              onPress={() => this.onPress(key)}
-            >
-              <DeckTile
-                title={decks[key].title}
-                numCards={decks[key].questions.length}
-              />
-            </TouchableOpacity>
-          );
-        })}
-      </View>
+      <SafeAreaView style={{flex: 1, marginBottom: 10}}>
+        <FlatList
+          data={Object.keys(decks)}
+          renderItem={({ item }) => {
+            const key = item;
+            return this.renderItem(
+              key,
+              decks[key].title,
+              decks[key].questions,
+            );
+          }}
+          keyExtractor={item => item}
+        />
+      </SafeAreaView>
     );
   }
 }
