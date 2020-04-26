@@ -40,16 +40,17 @@ export class Quiz extends React.Component {
     }))
   }
 
-  goHome = () => {
-    const { navigation } = this.props;
-    navigation.navigate(
-      "Home",
-    );
+  reset = () => {
+    this.setState({
+      showAnswer: false,
+      score: 0,
+      index: 0,
+    });
   }
 
   render() {
     const { showAnswer, index, score } = this.state;
-    const { deck } = this.props;
+    const { deck, navigation } = this.props;
     const numCards = deck.questions.length;
 
     if (index < numCards) {
@@ -90,8 +91,13 @@ export class Quiz extends React.Component {
             {`You got ${percentage_score}%`}
           </Text>
           <ContainedButton
-            text="Home"
-            onPress={this.goHome}
+            text="Restart Quiz"
+            onPress={this.reset}
+            btnStyle={{ alignSelf: 'stretch' }}
+          />
+          <ContainedButton
+            text="Back to Deck"
+            onPress={() => navigation.goBack()}
             btnStyle={{ alignSelf: 'stretch' }}
           />
         </View>
