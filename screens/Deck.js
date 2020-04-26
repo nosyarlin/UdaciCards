@@ -5,6 +5,7 @@ import commonStyles from '../utils/commonStyles';
 import { deleteDeck } from '../actions';
 import { deleteDeckFromDB } from '../utils/db';
 import { accent_color } from '../utils/colors';
+import { clearLocalNotification, setLocalNotification} from '../utils/notifications';
 import ContainedButton from '../components/ContainedButton';
 import TextButton from '../components/TextButton';
 
@@ -26,8 +27,13 @@ export class Deck extends React.Component {
     )
   }
 
-  navigateToQuiz = () => {
+  startQuiz = () => {
     const { navigation, deckId } = this.props;
+    // Clear notifications for today
+    clearLocalNotification()
+      .then(setLocalNotification);
+
+    // Navigate to quiz
     navigation.navigate(
       'Quiz',
       { deckId }
@@ -69,7 +75,7 @@ export class Deck extends React.Component {
         />
         <ContainedButton
           text="Quiz"
-          onPress={this.navigateToQuiz}
+          onPress={this.startQuiz}
           btnStyle={{
             alignSelf: 'stretch',
             backgroundColor: numCards === 0

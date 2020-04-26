@@ -5,6 +5,7 @@ import { StyleSheet, View, StatusBar, Platform } from 'react-native';
 import reducer from './reducers';
 import Constants from 'expo-constants';
 import { light_primary_color } from './utils/colors';
+import { setLocalNotification } from './utils/notifications';
 import { NavigationContainer } from '@react-navigation/native';
 import Navigation from './components/Navigation';
 
@@ -21,17 +22,23 @@ function UdaciStatusBar() {
   );
 }
 
-export default function App() {
-  return (
-    <NavigationContainer>
-      <Provider store={createStore(reducer)}>
-        <View style={styles.container}>
-          <UdaciStatusBar/>
-          <Navigation/>
-        </View>
-      </Provider>
-    </NavigationContainer>
-  );
+export default class App extends React.Component {
+  componentDidMount() {
+    setLocalNotification();
+  }
+
+  render() {
+    return (
+      <NavigationContainer>
+        <Provider store={createStore(reducer)}>
+          <View style={styles.container}>
+            <UdaciStatusBar/>
+            <Navigation/>
+          </View>
+        </Provider>
+      </NavigationContainer>
+    );
+  }
 }
 
 const styles = StyleSheet.create({
