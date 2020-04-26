@@ -10,7 +10,7 @@ import Navigation from './components/Navigation';
 
 export default class App extends React.Component {
   componentDidMount() {
-    setLocalNotification());
+    setLocalNotification();
   }
 
   render() {
