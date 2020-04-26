@@ -14,6 +14,7 @@ import AddDeck from '../screens/AddDeck';
 import Decks from '../screens/Decks';
 import Deck from '../screens/Deck';
 import AddCard from '../screens/AddCard';
+import Quiz from '../screens/Quiz';
 
 const Tabs = Platform.os === 'ios'
   ? createBottomTabNavigator()
@@ -81,6 +82,10 @@ function NavigationStacks() {
         name="AddCard"
         component={AddCard}
         options={{ title: 'Add Card' }}
+      />
+      <Stacks.Screen
+        name="Quiz"
+        component={Quiz}
       />
     </Stacks.Navigator>
   );

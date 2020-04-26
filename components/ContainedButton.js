@@ -2,9 +2,15 @@ import React from 'react';
 import { Text, TouchableOpacity, StyleSheet } from 'react-native';
 import { accent_color, text_color } from '../utils/colors';
 
-export default function ContainedButton ({ text, onPress, btnStyle={}, btnTextStyle={} }) {
+export default function ContainedButton (
+  { text, onPress, btnStyle={}, btnTextStyle={}, ...rest }
+) {
   return (
-    <TouchableOpacity style={[styles.btn, btnStyle]} onPress={onPress}>
+    <TouchableOpacity 
+      style={[styles.btn, btnStyle]}
+      onPress={onPress}
+      {...rest}
+    >
       <Text style={[styles.btnText, btnTextStyle]}>{text}</Text>
     </TouchableOpacity>
   );

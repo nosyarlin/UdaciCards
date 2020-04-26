@@ -4,6 +4,7 @@ import { View, Text } from 'react-native';
 import commonStyles from '../utils/commonStyles';
 import { deleteDeck } from '../actions';
 import { deleteDeckFromDB } from '../utils/db';
+import { accent_color } from '../utils/colors';
 import ContainedButton from '../components/ContainedButton';
 import TextButton from '../components/TextButton';
 
@@ -26,7 +27,11 @@ export class Deck extends React.Component {
   }
 
   navigateToQuiz = () => {
-    console.log("quiz");
+    const { navigation, deckId } = this.props;
+    navigation.navigate(
+      'Quiz',
+      { deckId }
+    )
   }
 
   handleDeleteDeck = () => {
@@ -65,7 +70,13 @@ export class Deck extends React.Component {
         <ContainedButton
           text="QUIZ"
           onPress={this.navigateToQuiz}
-          btnStyle={{ alignSelf: 'stretch' }}
+          btnStyle={{
+            alignSelf: 'stretch',
+            backgroundColor: numCards === 0
+              ? 'gray'
+              : accent_color
+          }}
+          disabled={numCards === 0}
         />
         <TextButton
           text="Delete Deck"
