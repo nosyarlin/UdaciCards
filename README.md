@@ -1,7 +1,8 @@
 # Udacity Flash Cards Project
 This is a simple react native project for mobile flash cards. This is useful for
 self-revision in general. You can create decks of cards and quiz yourself daily
-to see if you can remember answers to the questions you have created. 
+to see if you can remember answers to the questions you have created. This app
+was tested on an Android device running Android 9.
 
 ## Getting Started
 Just clone the project and run 
