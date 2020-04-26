@@ -1,6 +1,7 @@
 import { RECEIVE_DECKS, ADD_DECK, ADD_CARD } from '../actions';
 
 export default function decks(state={}, action) {
+  const { key, title, question, answer } = action;
   switch(action.type) {
     case RECEIVE_DECKS:
       return {
@@ -10,10 +11,13 @@ export default function decks(state={}, action) {
     case ADD_DECK:
       return {
         ...state,
-        [action.deck.key]: action.deck,
+        [key]: {
+          title,
+          key,
+          questions: [],
+        },
       }
     case ADD_CARD:
-      const { key, question, answer } = action;
       deck = {
         ...state[key],
         questions: deck.questions.concat([{

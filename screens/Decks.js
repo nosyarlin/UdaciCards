@@ -1,13 +1,12 @@
 import { AppLoading } from 'expo';
 import React from 'react';
-import { View, Text } from 'react-native';
+import { View, Text, TouchableOpacity } from 'react-native';
 import { connect } from 'react-redux';
 import { getDecks } from '../utils/db';
 import { receiveDecks } from '../actions';
-import TextButton from '../components/TextButton';
-import ContainedButton from '../components/ContainedButton';
+import DeckTile from '../components/DeckTile';
 
-function mapStateToProps({ decks }) {
+function mapStateToProps(decks) {
   return {
     decks
   };
@@ -27,8 +26,15 @@ export class Decks extends React.Component {
       })));;
   }
 
-  addDeck = () => {
-
+  onPress = (key) => {
+    const { decks, navigation } = this.props;
+    navigation.navigate(
+      'Deck',
+      { 
+        deckId: key,
+        title: decks[key].title,
+      }
+    )
   }
 
   render() {
@@ -37,21 +43,21 @@ export class Decks extends React.Component {
     if (!ready) {
       return <AppLoading/>
     }
-    console.log(decks);
 
     return (
       <View style={{flex: 1}}>
-        <Text>
-          {JSON.stringify(decks)}
-        </Text>
-        <ContainedButton
-          text='QUIZ'
-          onPress={this.addDeck}
-        />
-        <TextButton
-          text='ADD CARD'
-          onPress={this.addDeck}
-        />
+        {Object.keys(decks).map((key) => {
+          return (
+            <TouchableOpacity
+              onPress={() => this.onPress(key)}
+            >
+              <DeckTile
+                title={decks[key].title}
+                numCards={decks[key].questions.length}
+              />
+            </TouchableOpacity>
+          );
+        })}
       </View>
     );
   }
@@ -59,5 +65,4 @@ export class Decks extends React.Component {
 
 export default connect(
   mapStateToProps,
-// Implement map dispatch to props
 )(Decks)

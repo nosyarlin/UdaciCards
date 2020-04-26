@@ -4,16 +4,20 @@ import 'react-native-gesture-handler';
 import {
   text_color,
   primary_color,
-  light_primary_color
+  light_primary_color,
+  primary_text_color,
 } from '../utils/colors';
+import { createStackNavigator } from '@react-navigation/stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
 import AddDeck from '../screens/AddDeck';
 import Decks from '../screens/Decks';
+import Deck from '../screens/Deck';
 
 const Tabs = Platform.os === 'ios'
   ? createBottomTabNavigator()
   : createMaterialTopTabNavigator();
+const Stacks = createStackNavigator();
 
 function NavigationTabs() {
   return (
@@ -49,4 +53,31 @@ function NavigationTabs() {
   );
 }
 
-export default NavigationTabs;
+function NavigationStacks() {
+  return (
+    <Stacks.Navigator
+      screenOptions={{
+        headerTintColor: text_color,
+        headerStyle: {
+          backgroundColor: primary_color,
+        },
+        headerStatusBarHeight: 0
+      }}
+    >
+      <Stacks.Screen
+        name="Home"
+        component={NavigationTabs}
+        options={{
+          header: () => null,
+        }}
+      />
+      <Stacks.Screen
+        name="Deck"
+        component={Deck}
+        options={({ route }) => ({ title: route.params.title })}
+      />
+    </Stacks.Navigator>
+  );
+}
+
+export default NavigationStacks;

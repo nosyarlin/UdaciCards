@@ -3,7 +3,7 @@ import { AsyncStorage } from 'react-native';
 const DECK_STORAGE_KEY = 'UdaciCards:deck';
 const ID_LENGTH = 18;
 
-function _generateKey(title) {
+export function generateKey(title) {
   var result = '';
   var characters =
     'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
@@ -25,8 +25,7 @@ export function getDeck(key) {
     .then((results) => results[key]);
 }
 
-export function saveDeckTitle(title) {
-  key = _generateKey(title);
+export function saveDeckTitle(key, title) {
   return AsyncStorage.mergeItem(
     DECK_STORAGE_KEY,
     JSON.stringify({

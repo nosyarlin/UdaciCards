@@ -15,6 +15,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     paddingLeft: 8,
     paddingRight: 8,
+    marginTop: 16,
     height: 36,
   },
   btnText: {
