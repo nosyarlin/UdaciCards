@@ -63,12 +63,12 @@ export class Deck extends React.Component {
           {`${numCards} cards`}
         </Text>
         <ContainedButton
-          text="ADD CARD"
+          text="Add Card"
           onPress={this.navigateToAddCard}
           btnStyle={{ alignSelf: 'stretch' }}
         />
         <ContainedButton
-          text="QUIZ"
+          text="Quiz"
           onPress={this.navigateToQuiz}
           btnStyle={{
             alignSelf: 'stretch',

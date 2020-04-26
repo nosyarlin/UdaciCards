@@ -14,7 +14,7 @@ export class AddDeck extends React.Component {
 
   onSubmit = () => {
     const { title } = this.state;
-    const { dispatch } = this.props;
+    const { dispatch, navigation } = this.props;
     const key = generateKey(title);
 
     // Clear state
@@ -28,6 +28,10 @@ export class AddDeck extends React.Component {
         Alert.alert(
           'Success',
           'Deck successfully created',
+        );
+        navigation.navigate(
+          'Deck',
+          { deckId: key }
         );
       });
   }
@@ -48,7 +52,7 @@ export class AddDeck extends React.Component {
           placeholder="Enter title for your new deck"
         />
         <ContainedButton
-          text="ADD"
+          text="Create Deck"
           onPress={this.onSubmit}
           btnStyle={{ alignSelf: 'stretch' }}
         />
