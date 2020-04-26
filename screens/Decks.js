@@ -49,6 +49,7 @@ export class Decks extends React.Component {
         {Object.keys(decks).map((key) => {
           return (
             <TouchableOpacity
+              key={key}
               onPress={() => this.onPress(key)}
             >
               <DeckTile

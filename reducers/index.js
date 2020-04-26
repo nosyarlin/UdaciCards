@@ -1,4 +1,4 @@
-import { RECEIVE_DECKS, ADD_DECK, ADD_CARD } from '../actions';
+import { RECEIVE_DECKS, ADD_DECK, ADD_CARD, DELETE_DECK } from '../actions';
 
 export default function decks(state={}, action) {
   const { key, title, question, answer } = action;
@@ -29,6 +29,12 @@ export default function decks(state={}, action) {
         ...state,
         [key]: deck,
       }
+    case DELETE_DECK:
+      const newState = {
+        ...state,
+      };
+      delete newState[key]
+      return newState;
     default:
       return state;
   }

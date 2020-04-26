@@ -57,3 +57,14 @@ export function addCardToDeck(key, question, answer) {
       );
     });
 }
+
+export function deleteDeckFromDB(key) {
+  return getDecks()
+    .then((decks) => {
+      delete decks[key];
+      AsyncStorage.setItem(
+        DECK_STORAGE_KEY,
+        JSON.stringify(decks)
+      );
+    })
+}
